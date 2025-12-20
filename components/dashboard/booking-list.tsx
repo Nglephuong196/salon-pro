@@ -17,7 +17,7 @@ const recentBookings = [
     staff: "Tran B",
     time: "09:00 AM",
     status: "Confirmed",
-    amount: "150.000Ž`",
+    amount: "150.000đ",
   },
   {
     id: "BK002",
@@ -26,7 +26,7 @@ const recentBookings = [
     staff: "Le D",
     time: "10:30 AM",
     status: "Pending",
-    amount: "200.000Ž`",
+    amount: "200.000đ",
   },
   {
     id: "BK003",
@@ -35,7 +35,7 @@ const recentBookings = [
     staff: "Nguyen F",
     time: "01:00 PM",
     status: "Completed",
-    amount: "500.000Ž`",
+    amount: "500.000đ",
   },
   {
     id: "BK004",
@@ -44,7 +44,7 @@ const recentBookings = [
     staff: "Pham H",
     time: "02:30 PM",
     status: "Cancelled",
-    amount: "100.000Ž`",
+    amount: "100.000đ",
   },
   {
     id: "BK005",
@@ -53,7 +53,7 @@ const recentBookings = [
     staff: "Tran B",
     time: "04:00 PM",
     status: "Confirmed",
-    amount: "50.000Ž`",
+    amount: "50.000đ",
   },
 ];
 
@@ -63,12 +63,12 @@ export function BookingList() {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Customer</TableHead>
-            <TableHead>Service</TableHead>
-            <TableHead>Staff</TableHead>
-            <TableHead>Time</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead className="text-right">Total</TableHead>
+            <TableHead>Khách hàng</TableHead>
+            <TableHead>Dịch vụ</TableHead>
+            <TableHead>Nhân viên</TableHead>
+            <TableHead>Giờ</TableHead>
+            <TableHead>Trạng thái</TableHead>
+            <TableHead className="text-right">Tổng cộng</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -103,7 +103,9 @@ export function BookingList() {
                       ""
                   }
                 >
-                  {booking.status}
+                  {booking.status === "Confirmed" ? "Đã xác nhận" :
+                   booking.status === "Completed" ? "Hoàn thành" :
+                   booking.status === "Pending" ? "Chờ duyệt" : "Đã hủy"}
                 </Badge>
               </TableCell>
               <TableCell className="text-right">{booking.amount}</TableCell>

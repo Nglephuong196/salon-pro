@@ -162,7 +162,7 @@ export function ResourcePage<T extends { id?: string }>({
             {/* Search */}
             <div className="relative w-full sm:w-[250px] lg:w-[300px]">
                 <Input
-                    placeholder="Search..."
+                    placeholder="Tìm kiếm..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="h-10 rounded-lg bg-gray-50/50 pl-9 dark:bg-zinc-900/50"
@@ -192,10 +192,10 @@ export function ResourcePage<T extends { id?: string }>({
                       <SelectValue placeholder="All Category" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="today">Today</SelectItem>
-                      <SelectItem value="tomorrow">Tomorrow</SelectItem>
-                      <SelectItem value="yesterday">Yesterday</SelectItem>
-                      <SelectItem value="all">All Time</SelectItem>
+                      <SelectItem value="today">Hôm nay</SelectItem>
+                      <SelectItem value="tomorrow">Ngày mai</SelectItem>
+                      <SelectItem value="yesterday">Hôm qua</SelectItem>
+                      <SelectItem value="all">Tất cả thời gian</SelectItem>
                     </SelectContent>
                   </Select>
                   <div className="hidden sm:block">
@@ -223,8 +223,8 @@ export function ResourcePage<T extends { id?: string }>({
                     {dialogTitle
                     ? dialogTitle(!!editingItem)
                     : editingItem
-                    ? `Update ${title}`
-                    : `Create ${title}`}
+                    ? `Cập nhật ${title}`
+                    : `Tạo ${title}`}
                 </DialogTitle>
                 <DialogDescription>{dialogDescription}</DialogDescription>
                 </DialogHeader>

@@ -52,7 +52,7 @@ export const getColumns = ({ onEdit, onDelete }: ResourceActions<Invoice>): Colu
 
         return (
             <Badge variant={variant} className="rounded-md px-3 font-normal">
-                {status === "Paid" ? "Completed" : status === "Unpaid" ? "Pending" : "Cancelled"}
+                {status === "Paid" ? "Đã thanh toán" : status === "Unpaid" ? "Chưa thanh toán" : "Đã hủy"}
             </Badge>
         )
     }
@@ -66,7 +66,7 @@ export const getColumns = ({ onEdit, onDelete }: ResourceActions<Invoice>): Colu
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
+              <span className="sr-only">Mở menu</span>
               <MoreHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
