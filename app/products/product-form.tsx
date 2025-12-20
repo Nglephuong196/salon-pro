@@ -63,7 +63,12 @@ export function ProductForm({ defaultValues, onSubmit, categories }: ProductForm
                 <FormItem>
                 <FormLabel>Giá (VNĐ)</FormLabel>
                 <FormControl>
-                    <Input type="number" placeholder="0" {...field} />
+                    <Input 
+                      type="number" 
+                      placeholder="0" 
+                      {...field} 
+                      onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                    />
                 </FormControl>
                 <FormMessage />
                 </FormItem>
@@ -76,7 +81,12 @@ export function ProductForm({ defaultValues, onSubmit, categories }: ProductForm
                 <FormItem>
                 <FormLabel>Tồn kho</FormLabel>
                 <FormControl>
-                    <Input type="number" placeholder="0" {...field} />
+                    <Input 
+                      type="number" 
+                      placeholder="0" 
+                      {...field} 
+                      onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                    />
                 </FormControl>
                 <FormMessage />
                 </FormItem>

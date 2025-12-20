@@ -63,7 +63,12 @@ export function ServiceForm({ defaultValues, onSubmit, categories }: ServiceForm
                 <FormItem>
                 <FormLabel>Giá (VNĐ)</FormLabel>
                 <FormControl>
-                    <Input type="number" placeholder="0" {...field} />
+                    <Input 
+                      type="number" 
+                      placeholder="0" 
+                      {...field} 
+                      onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                    />
                 </FormControl>
                 <FormMessage />
                 </FormItem>
@@ -76,7 +81,12 @@ export function ServiceForm({ defaultValues, onSubmit, categories }: ServiceForm
                 <FormItem>
                 <FormLabel>Thời lượng (phút)</FormLabel>
                 <FormControl>
-                    <Input type="number" placeholder="30" {...field} />
+                    <Input 
+                      type="number" 
+                      placeholder="30" 
+                      {...field} 
+                      onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                    />
                 </FormControl>
                 <FormMessage />
                 </FormItem>
