@@ -28,6 +28,15 @@ export const getColumns = ({ onEdit, onDelete }: ResourceActions<Client>): Colum
     header: "Email",
   },
   {
+    accessorKey: "lastServiceDate",
+    header: "Lần sử dụng cuối",
+    cell: ({ row }) => {
+      const date = row.getValue("lastServiceDate") as Date | undefined
+      if (!date) return <span className="text-muted-foreground">—</span>
+      return date.toLocaleDateString("vi-VN")
+    },
+  },
+  {
     id: "actions",
     cell: ({ row }) => {
       const client = row.original

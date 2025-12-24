@@ -6,6 +6,7 @@ export const clientSchema = z.object({
   phone: z.string().min(10, { message: "Số điện thoại không hợp lệ." }),
   email: z.string().email({ message: "Email không hợp lệ." }).optional().or(z.literal('')),
   notes: z.string().optional(),
+  lastServiceDate: z.date().optional(),
 })
 
 export type Client = z.infer<typeof clientSchema>

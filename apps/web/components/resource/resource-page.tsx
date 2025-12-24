@@ -44,6 +44,7 @@ interface ResourcePageProps<T> {
   dialogTitle?: (isEditing: boolean) => string
   dialogDescription?: string
   dateFilterField?: keyof T
+  statsCards?: React.ReactNode
 }
 
 export function ResourcePage<T extends { id?: string }>({
@@ -56,6 +57,7 @@ export function ResourcePage<T extends { id?: string }>({
   dialogTitle,
   dialogDescription = "Nhập thông tin vào form bên dưới.",
   dateFilterField,
+  statsCards,
 }: ResourcePageProps<T>) {
   const [data, setData] = useState<T[]>(initialData)
   const [isOpen, setIsOpen] = useState(false)
@@ -155,9 +157,20 @@ export function ResourcePage<T extends { id?: string }>({
 
   return (
     <div className="rounded-xl border border-gray-100 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-950">
-      <div className="flex flex-col items-start justify-between gap-4 p-6 sm:flex-row sm:items-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">{title}</h1>
+      {/* Page Title */}
+      <div className="px-6 pt-6 pb-4">
+        <h1 className="text-2xl font-bold tracking-tight text-foreground">{title}</h1>
+      </div>
 
+      {/* Stats Cards (optional) */}
+      {statsCards && (
+        <div className="px-6 pb-4">
+          {statsCards}
+        </div>
+      )}
+
+      {/* Filters & Add Button Row */}
+      <div className="flex flex-col items-start justify-between gap-4 px-6 pb-6 sm:flex-row sm:items-center border-b border-gray-100 dark:border-zinc-800">
         <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center">
             {/* Search */}
             <div className="relative w-full sm:w-[250px] lg:w-[300px]">
@@ -203,40 +216,40 @@ export function ResourcePage<T extends { id?: string }>({
                   </div>
                 </>
             )}
-
-            {/* Add Button */}
-            <Dialog
-            open={isOpen}
-            onOpenChange={(open) => {
-                setIsOpen(open)
-                if (!open) setEditingItem(null)
-            }}
-            >
-            <DialogTrigger asChild>
-                <Button className="h-10 rounded-lg px-4" size="default">
-                <Plus className="mr-2 h-4 w-4" /> {addButtonLabel}
-                </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[500px]">
-                <DialogHeader>
-                <DialogTitle>
-                    {dialogTitle
-                    ? dialogTitle(!!editingItem)
-                    : editingItem
-                    ? `Cập nhật ${title}`
-                    : `Tạo ${title}`}
-                </DialogTitle>
-                <DialogDescription>{dialogDescription}</DialogDescription>
-                </DialogHeader>
-                <div className="py-4">
-                <FormComponent
-                    defaultValues={editingItem || undefined}
-                    onSubmit={editingItem ? handleUpdate : handleCreate}
-                />
-                </div>
-            </DialogContent>
-            </Dialog>
         </div>
+
+        {/* Add Button */}
+        <Dialog
+        open={isOpen}
+        onOpenChange={(open) => {
+            setIsOpen(open)
+            if (!open) setEditingItem(null)
+        }}
+        >
+        <DialogTrigger asChild>
+            <Button className="h-10 rounded-lg px-4" size="default">
+            <Plus className="mr-2 h-4 w-4" /> {addButtonLabel}
+            </Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[500px]">
+            <DialogHeader>
+            <DialogTitle>
+                {dialogTitle
+                ? dialogTitle(!!editingItem)
+                : editingItem
+                ? `Cập nhật ${title}`
+                : `Tạo ${title}`}
+            </DialogTitle>
+            <DialogDescription>{dialogDescription}</DialogDescription>
+            </DialogHeader>
+            <div className="py-4">
+            <FormComponent
+                defaultValues={editingItem || undefined}
+                onSubmit={editingItem ? handleUpdate : handleCreate}
+            />
+            </div>
+        </DialogContent>
+        </Dialog>
       </div>
       
       {/* Table Content */}

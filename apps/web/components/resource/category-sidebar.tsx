@@ -83,7 +83,7 @@ export function CategorySidebar({
   }
 
   return (
-    <div className="w-64 border-r h-full flex flex-col bg-background">
+    <div className="w-64 border-r h-full hidden md:flex flex-col bg-background">
       <div className="p-4 border-b flex items-center justify-between">
         <h2 className="font-semibold text-lg">{title}</h2>
         <Button variant="ghost" size="icon" onClick={openAdd}>

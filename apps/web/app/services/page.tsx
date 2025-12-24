@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { CategorySidebar, Category } from "@/components/resource/category-sidebar"
+import { MobileCategorySelector } from "@/components/resource/mobile-category-selector"
 import { ResourcePage } from "@/components/resource/resource-page"
 import { getColumns } from "./columns"
 import { ServiceForm } from "./service-form"
@@ -50,7 +51,8 @@ export default function ServicesPage() {
     : services
 
   return (
-    <div className="flex h-full">
+    <div className="flex flex-col md:flex-row h-full">
+      {/* Desktop Sidebar */}
       <CategorySidebar
         title="Danh mục dịch vụ"
         categories={categories}
@@ -60,7 +62,21 @@ export default function ServicesPage() {
         onEdit={handleEditCategory}
         onDelete={handleDeleteCategory}
       />
-      <div className="flex-1 overflow-hidden">
+      
+      <div className="flex-1 overflow-hidden flex flex-col">
+        {/* Mobile Category Selector */}
+        <div className="p-4 md:hidden">
+          <MobileCategorySelector
+            title="Danh mục dịch vụ"
+            categories={categories}
+            selectedId={selectedCategoryId}
+            onSelect={setSelectedCategoryId}
+            onAdd={handleAddCategory}
+            onEdit={handleEditCategory}
+            onDelete={handleDeleteCategory}
+          />
+        </div>
+        
         {/* We use key to force a fresh instance of ResourcePage when category changes, 
             so it picks up the new 'initialData'. 
             ALSO, we need to pass a wrapped Form component that has access to 'categories' for the dropdown. */}
