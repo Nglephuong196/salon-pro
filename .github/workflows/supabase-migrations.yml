@@ -6,6 +6,7 @@ on:
       - master
     paths:
       - "supabase/migrations/**"
+      - ".github/workflows/supabase-migrations.yml"
 
 jobs:
   deploy:
